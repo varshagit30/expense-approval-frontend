@@ -7,8 +7,8 @@ const AppRoutes = () => {
     return (
         <Routes>
             <Route path="/login" element={<Login />} />
+            <Route path="/home" element={<Home />} />
             <Route element={<ProtectedRoute />}>
-                <Route path="/home" element={<Home />} />
                 {/* <Route path="*" element={<Navigate to="/login" />} /> */}
             </Route>
         </Routes >
