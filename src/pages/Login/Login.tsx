@@ -2,12 +2,47 @@ import { Button, Card, Checkbox, Input, Typography } from "antd";
 import { LockOutlined, MailOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import "./Login.css";
+import { login } from "../../api/authApi.ts";
+import { message } from "antd";
+import { useNavigate } from "react-router-dom";
+
 
 const { Title, Text } = Typography;
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
+  const handleLogin = async () => {
+    if (!username || !password) {
+      message.error("Please enter username and password");
+      return;
+    }
+
+    try {
+      setLoading(true);
+
+      const res = await login({
+        username,
+        password,
+      });
+
+      localStorage.setItem("token", res.token);
+
+      message.success("Login successful");
+      navigate("/");
+
+    } catch (err: any) {
+      const errorMsg =
+        err.response?.data?.message || "Login failed. Please try again.";
+      message.error(errorMsg);
+    } finally {
+      setLoading(false);
+    }
+  };
+
 
   return (
     <div className="login-wrapper">
@@ -80,6 +115,8 @@ const Login = () => {
               size="large"
               block
               className="login-btn"
+              loading={loading}
+              onClick={handleLogin}
             >
               SIGN IN
             </Button>
