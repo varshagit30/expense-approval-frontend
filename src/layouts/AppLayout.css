@@ -1,0 +1,30 @@
+.app-layout {
+  min-height: 100vh;
+}
+
+.app-sider {
+  background: #2f3e46 !important;
+}
+
+.sider-logo {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  padding-left: 24px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.app-header {
+  background: #ffffff;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 24px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+.app-content {
+  padding: 20px;
+  background: #f8fafc;
+}
