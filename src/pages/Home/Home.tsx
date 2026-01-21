@@ -20,13 +20,14 @@ const Home = () => {
 
   return (
     <Layout className="home-layout">
-      {/* SIDEBAR */}
+      {/* SIDEBAR
       <Sider width={220} className="home-sider">
         <div className="sider-logo">⬚ Expense Approval</div>
 
         <Menu
           mode="inline"
           defaultSelectedKeys={["home"]}
+          onClick={({ key }) => navigate(`/${key}`)}
           items={[
             {
               key: "home",
@@ -40,12 +41,12 @@ const Home = () => {
             },
           ]}
         />
-      </Sider>
+      </Sider> */}
 
       {/* MAIN AREA */}
       <Layout>
         {/* HEADER */}
-        <Header className="home-header">
+        {/* <Header className="home-header">
           <Button
             type="text"
             icon={<LogoutOutlined />}
@@ -54,7 +55,7 @@ const Home = () => {
           >
             Logout
           </Button>
-        </Header>
+        </Header> */}
 
         {/* CONTENT */}
         <Content className="home-content">
