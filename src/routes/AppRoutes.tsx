@@ -7,15 +7,6 @@ import AppLayout from "../layouts/AppLayout";
 
 const AppRoutes = () => {
     return (
-        // <Routes>
-        //     <Route path="/login" element={<Login />} />
-        //     <Route path="/home" element={<Home />} />
-        //     <Route path="/expenses" element={<ExpenseList />} />
-        //     <Route element={<ProtectedRoute />}>
-        //         {/* <Route path="*" element={<Navigate to="/login" />} /> */}
-        //     </Route>
-        // </Routes >
-
         <Routes>
             <Route path="/" element={<Navigate to="/login" replace />} />
             <Route path="/login" element={<Login />} />
