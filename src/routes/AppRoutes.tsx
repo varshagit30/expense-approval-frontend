@@ -4,6 +4,7 @@ import Home from "../pages/Home/Home";
 import ProtectedRoute from "./ProtectedRoute";
 import ExpenseList from "../pages/Expenses/ExpenseList";
 import AppLayout from "../layouts/AppLayout";
+import CreateExpense from "../pages/CreateExpense/CreateExpense";
 
 const AppRoutes = () => {
     return (
@@ -14,6 +15,7 @@ const AppRoutes = () => {
             <Route element={<AppLayout />} >
                 <Route path="/home" element={<Home />} />
                 <Route path="/expenses" element={<ExpenseList />} /></Route>
+            <Route path="/expenses/new" element={<CreateExpense />} />
             <Route element={<ProtectedRoute />}>
             </Route>
 
