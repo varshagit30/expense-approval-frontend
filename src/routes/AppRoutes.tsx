@@ -9,16 +9,24 @@ import CreateExpense from "../pages/CreateExpense/CreateExpense";
 const AppRoutes = () => {
     return (
         <Routes>
+            {/* Default route */}
             <Route path="/" element={<Navigate to="/login" replace />} />
+
+            {/* Public route */}
             <Route path="/login" element={<Login />} />
 
-            <Route element={<AppLayout />} >
-                <Route path="/home" element={<Home />} />
-                <Route path="/expenses" element={<ExpenseList />} /></Route>
-            <Route path="/expenses/new" element={<CreateExpense />} />
+            {/* Protected routes WITH layout */}
             <Route element={<ProtectedRoute />}>
+                <Route element={<AppLayout />}>
+                    <Route path="/home" element={<Home />} />
+                    <Route path="/expenses" element={<ExpenseList />} />
+                    <Route path="/expenses/new" element={<CreateExpense />} />
+                </Route>
+
+                {/* Protected route WITHOUT layout (full-screen form) */}
             </Route>
 
+            {/* Fallback */}
             <Route path="*" element={<Navigate to="/login" replace />} />
         </Routes>
 
