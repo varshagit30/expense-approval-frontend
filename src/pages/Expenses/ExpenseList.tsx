@@ -69,7 +69,7 @@ const ExpenseList = () => {
         {
             title: "Created By",
             dataIndex: "createdBy",
-            key: "createdBy",
+            key: "createdByName",
         },
     ];
 

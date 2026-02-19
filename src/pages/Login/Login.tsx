@@ -16,32 +16,24 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleLogin = async () => {
-    if (!username || !password) {
-      message.error("Please enter username and password");
-      return;
-    }
-
     try {
-      setLoading(true);
+      const res = await login({ username, password });
 
-      const res = await login({
-        username,
-        password,
-      });
+      const token = res.token;
+      localStorage.setItem("token", token);
 
-      localStorage.setItem("token", res.token);
+      // Decode token to get username (and later userId)
+      const payload = JSON.parse(atob(token.split(".")[1]));
 
-      message.success("Login successful");
-      navigate("/");
+      localStorage.setItem("username", payload.sub);
+      localStorage.setItem("role", payload.role);
 
-    } catch (err: any) {
-      const errorMsg =
-        err.response?.data?.message || "Login failed. Please try again.";
-      message.error(errorMsg);
-    } finally {
-      setLoading(false);
+      navigate("/home");
+    } catch (err) {
+      message.error("Invalid username or password");
     }
   };
+
 
 
   return (

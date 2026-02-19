@@ -8,12 +8,31 @@ const { Title } = Typography;
 const CreateExpense = () => {
     const navigate = useNavigate();
 
-    const onFinish = (values: any) => {
-        console.log("New Expense:", values);
-        message.success("Expense created successfully");
-        navigate("/expenses");
-    };
+    const onFinish = async (values: any) => {
+        try {
+            const userId = localStorage.getItem("username");
 
+            if (!userId) {
+                message.error("User not logged in");
+                return;
+            }
+
+            const payload = {
+                title: values.title,
+                description: values.description,
+                createdBy: Number(userId), 
+            };
+
+
+            await createExpense(payload);
+
+            message.success("Expense created successfully");
+            navigate("/expenses");
+        } catch (err) {
+            message.error("Failed to create expense");
+            console.error(err);
+        }
+    };
     return (
         <div className="create-expense-page">
             <Card className="create-expense-card">
